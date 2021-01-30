@@ -1,263 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flight Booking</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Stylesheet -->
-    
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/fontawesome.min.css">
-</head>
 
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/fontawesome.min.css" />
+  </head>
+
+  <body>
     <!--Header and Menu Section-->
     <header class="container">
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a class="active" href="#">Sign Up</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a class="active" href="#">Sign Up</a></li>
+        </ul>
+      </nav>
     </header>
 
     <!--Booking Section-->
     <main>
-    <section id="before-booking" class="main-content container">
+      <section id="before-booking" class="main-content container">
         <div class="booking-form">
-            <h3>Booking Flights</h3>
+          <h3>Booking Flights</h3>
+          <div class="input-group">
+            <label for="">Flying From</label>
+            <input
+              class="inp-style"
+              type="text"
+              name=""
+              placeholder="Dhaka, Bangladesh"
+            />
+          </div>
+          <div class="input-group">
+            <label for="">Flying To</label>
+            <input
+              class="inp-style"
+              type="text"
+              name=""
+              placeholder="New York, United States"
+            />
+          </div>
+          <div class="inputs">
             <div class="input-group">
-                <label for="">Flying From</label>
-                <input class="inp-style" type="text" name="" placeholder="Dhaka, Bangladesh">
+              <label for="departure">Departure</label>
+              <input id="journey-date" class="inp-style" type="date" name="" />
             </div>
             <div class="input-group">
-                <label for="">Flying To</label>
-                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+              <label for="return">Return</label>
+              <input class="inp-style" type="date" name="" />
             </div>
-            <div class="inputs">
-                <div class="input-group">
-                    <label for="departure">Departure</label>
-                    <input id="journey-date" class="inp-style" type="date" name="">
-                </div>
-                <div class="input-group">
-                    <label for="return">Return</label>
-                    <input class="inp-style" type="date" name="">
-                </div>
+          </div>
+          <div class="input-group f-class">
+            <div>
+              <label for="">First Class ($150)</label>
+              <input
+                id="f-class-ticket-count"
+                class="inp-style inp-width"
+                type="number"
+                name=""
+                value="0"
+              />
             </div>
-            <div class="input-group f-class">
-                <div> 
-                    <label for="">First Class ($150)</label>
-                    <input id="f-class-ticket-count" class="inp-style inp-width" type="number" name="" value="0">
-                </div>
-                <div class="plus-minus-btn">
-                    <p>
-                        <button onclick="handleTicketChange('f-class',true)" class="plus-minus-btn"><i class="fas fa-plus"></i></button> 
-                        <button onclick="handleTicketChange('f-class',false)" class="plus-minus-btn" ><i class="fas fa-minus"></i></button>
-                    </p>
-                </div>   
+            <div class="plus-minus-btn">
+              <p>
+                <button
+                  onclick="handleTicketCountChange('f-class',true)"
+                  class="plus-minus-btn"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button
+                  onclick="handleTicketCountChange('f-class',false)"
+                  class="plus-minus-btn"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+              </p>
             </div>
-            
-            <div class="input-group f-class">
-                <div>
-                    <label for="">Economy ($100)</label>
-                    <input id="e-class-ticket-count" class="inp-style inp-width" type="number" name="" value="0">
-                </div>
-                <div class="plus-minus-btn">
-                    <p>
-                        <button onclick="handleTicketChange('e-class',true)" class="plus-minus-btn"><i class="fas fa-plus"></i></button> 
-                        <button onclick="handleTicketChange('e-class',false)" class="plus-minus-btn" ><i class="fas fa-minus"></i></button> 
-                    </p>
-                </div>
-            </div>
-            <div class="calculations">
-                <div class="amount">
-                    <div class="left">
-                        <p>Subtotal</p>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="subtotal-bill">00</span></p>
-                    </div>
-                </div>
+          </div>
 
-                <div class="amount">
-                    <div class="left">
-                        <p>Charge 10% VAT</p>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="tax-bill">0</span></p>
-                    </div>
-                </div>
-                <hr>
-                <div class="amount">
-                    <div class="left">
-                        <h4>Total</h4>
-                    </div>
-                    <div class="right">
-                        <p>$<span id="total-bill">000</span></p>
-                    </div>
-                </div>
+          <div class="input-group f-class">
+            <div>
+              <label for="">Economy ($100)</label>
+              <input
+                id="e-class-ticket-count"
+                class="inp-style inp-width"
+                type="number"
+                name=""
+                value="0"
+              />
             </div>
-            <button onclick="afterBooking()" class="btn-style">Book Now</button>
+            <div class="plus-minus-btn">
+              <p>
+                <button
+                  onclick="handleTicketCountChange('e-class',true)"
+                  class="plus-minus-btn"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+                <button
+                  onclick="handleTicketCountChange('e-class',false)"
+                  class="plus-minus-btn"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+              </p>
+            </div>
+          </div>
+          <div class="calculations">
+            <div class="amount">
+              <div class="left">
+                <p>Subtotal</p>
+              </div>
+              <div class="right">
+                <p>$<span id="subtotal-bill">00</span></p>
+              </div>
+            </div>
+
+            <div class="amount">
+              <div class="left">
+                <p>Charge 10% VAT</p>
+              </div>
+              <div class="right">
+                <p>$<span id="tax-bill">0</span></p>
+              </div>
+            </div>
+            <hr />
+            <div class="amount">
+              <div class="left">
+                <h4>Total</h4>
+              </div>
+              <div class="right">
+                <p>$<span id="total-bill">000</span></p>
+              </div>
+            </div>
+          </div>
+          <button onclick="afterBooking()" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
-            <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+          <h1>
+            discover <br />
+            around the world
+          </h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident
+            voluptatibus quam fuga laborumalias veniam libero autem quasi maxime
+            ullam vero nama imi dolor, architecto ab facilis eaque deserunt
+            nobise voluptatibus quam
+          </p>
         </div>
-    </section>
-    <section id="after-booking">
+      </section>
+      <!-- this page for successfully booking  -->
+      <section id="after-booking">
         <h1>Congratulation! Your flight booking is on hold</h1>
         <p>Wait for our Confirmation Mail Thank you for Being with us</p>
-        <h1>Your Booking Processing is going on <span><i class="fas fa-spinner"></i></span></h1>
+        <h1>
+          Your Booking Processing is going on
+          <span><i class="fas fa-spinner"></i></span>
+        </h1>
 
-        <h3>Your Ticket First-Class:  <i class="fas fa-ticket-alt"></i> <span id="f-class-ticket-count-after"></span> .</h3> 
-        <h3>Your Ticket Economy-Class:  <i class="fas fa-ticket-alt"></i> <span id="e-class-ticket-count-after"></span> .</h3>   
+        <h3>
+          Your Ticket First-Class: <i class="fas fa-ticket-alt"></i>
+          <span id="f-class-ticket-count-after"></span> .
+        </h3>
+        <h3>
+          Your Ticket Economy-Class: <i class="fas fa-ticket-alt"></i>
+          <span id="e-class-ticket-count-after"></span> .
+        </h3>
         <h3>Subtotal Bill : <span id="subtotal-bill-after"></span>.</h3>
         <h3>Tax: <span id="tax-bill-after"></span>.</h3>
         <h1>Total: <span id="total-bill-after"></span>.</h1>
-
-
-
-    </section>
-
-    <section id="no-ticket">
+      </section>
+      <!-- this section for not valid attempt -->
+      <section id="no-ticket">
         <h1>You didn't selected any class of Ticket</h1>
-        <h1> Please select your Ticket <i class="fas fa-exclamation"></i></h1>
-
-    </section>
-
-</main>
+        <h1>Please select your Ticket <i class="fas fa-exclamation"></i></h1>
+      </section>
+    </main>
 
     <!--Thank You-->
 
-
     <script>
-      
+      //    main function here all ticket number(economy/first class) will be updated to form and total cost function called
 
+      function handleTicketCountChange(ticketClass, isIncrease) {
+        let ticketCount = document.getElementById(ticketClass + "-ticket-count")
+          .value;
+        let ticketNumber = parseInt(ticketCount);
 
-        function handleTicketChange(ticketClass,isIncrease){
-            
-            let ticketCount = document.getElementById(ticketClass + "-ticket-count").value;
-          let ticketNumber = parseInt(ticketCount);
-        
-
-        if(isIncrease == true){
-            ticketNumber++;
+        if (isIncrease == true) {
+          ticketNumber++;
+        } else if (isIncrease == false && ticketNumber > 0) {
+          ticketNumber--;
         }
-        else  if(isIncrease == false && ticketNumber >0 ){
-            ticketNumber--;
+        if (ticketClass == "f-class") {
+          let ticketAmount = 150 * ticketNumber;
         }
-        if(ticketClass == "f-class"){
-            let ticketAmount = 150 * ticketNumber ;
-
-        }
-       if(ticketClass == "e-class"){
-            let ticketAmount = 100 * ticketNumber;
+        if (ticketClass == "e-class") {
+          let ticketAmount = 100 * ticketNumber;
         }
 
-          
+        //   updating the new value for ticket count for all required places
+        document.getElementById(
+          ticketClass + "-ticket-count"
+        ).value = ticketNumber;
 
-        
-          
-          document.getElementById(ticketClass + "-ticket-count").value= ticketNumber;
-          totalBill();
+        //   totalBill function called from here to get all needed calculation for pages
+        totalBill();
+      }
+      function totalBill() {
+        //calling getTicketNumber atomic function for no repeating and easier
+        let eClassTicketCountNumber = getTicketNumber("e-class");
+        let fClassTicketCountNumber = getTicketNumber("f-class");
 
+        // here also code repeating but i m not creating any function because its not to much big
+        // it will be short function if i create but it will be not decreased my code size
+        let subtotal =
+          fClassTicketCountNumber * 150 + eClassTicketCountNumber * 100;
+        document.getElementById("subtotal-bill").innerText = subtotal;
+        let tax = subtotal * 0.1;
+        document.getElementById("tax-bill").innerText = tax;
+        let total = subtotal + tax;
+        document.getElementById("total-bill").innerText = total;
+      }
+      //this function is short function but i can use multiple places with variable name pattern
+      function getTicketNumber(ticketClass) {
+        let ticketCount = document.getElementById(ticketClass + "-ticket-count")
+          .value;
+        let ticketCountNumber = parseInt(ticketCount);
+        return ticketCountNumber;
+      }
+
+      //  this function will be executed after booking button clicked and here i m checking is this booking is valid or not
+      function afterBooking() {
+        let validation = document.getElementById("total-bill").innerText;
+        let validationNumber = parseInt(validation); // checking is there any sit selected or not, by using total bill
+        if (validationNumber > 0) {
+          //   if condition true it will generate a  another page with ticket details
+
+          document.getElementById("after-booking").style.display = "block";
+          document.getElementById("before-booking").style.display = "none";
+
+          afterBookingTextUpdate("e-class");
+          afterBookingTextUpdate("f-class");
+          afterBookingCalculationUpdate("total-bill");
+          afterBookingCalculationUpdate("tax-bill");
+          afterBookingCalculationUpdate("subtotal-bill");
+        } else {
+          //  if condition false means no sit selected thats why it will display a warning page gor user acknowledgement
+          document.getElementById("no-ticket").style.display = "block";
+          document.getElementById("before-booking").style.display = "none";
         }
-        function totalBill(){
-            
+      }
+      //    this function created for text type like (p,h,etc) after booking button clicked using variable name pattern
+      function afterBookingTextUpdate(ticketClass) {
+        const ticketCountNumber = document.getElementById(
+          ticketClass + "-ticket-count"
+        ).value;
 
-            let eClassTicketCountNumber= getTicketNumber("e-class");
-            let fClassTicketCountNumber = getTicketNumber("f-class");
-            
-
-
-            let subtotal = fClassTicketCountNumber *150 + eClassTicketCountNumber *100;
-            document.getElementById("subtotal-bill").innerText= subtotal;
-            let tax = subtotal * 0.1;
-            document.getElementById("tax-bill").innerText= tax;
-            let total = subtotal + tax;
-            document.getElementById("total-bill").innerText= total;
-            
-
-
-
-
-        }
-        function getTicketNumber(ticketClass){
-            let ticketCount = document.getElementById(ticketClass +"-ticket-count").value;
-            let ticketCountNumber = parseInt(ticketCount);
-            return ticketCountNumber;
-        }
-
-
-
-        function afterBooking(){
-             let validation = document.getElementById("total-bill").innerText;
-             let validationNumber = parseInt(validation);// checking is there any sit selected or not by using total bill
-             if(validationNumber>0){
-              
-
-
-            document.getElementById("after-booking").style.display="block";
-            document.getElementById("before-booking").style.display="none";
-
-            
-            afterBookingTextUpdate("e-class");
-            afterBookingTextUpdate("f-class");
-            afterBookingCalculationUpdate("total-bill");
-            afterBookingCalculationUpdate("tax-bill");
-            afterBookingCalculationUpdate("subtotal-bill");
-
-             }
-             else{
-                 document.getElementById("no-ticket").style.display= "block";
-                 document.getElementById("before-booking").style.display="none";
-
-             }
-
-            
-            
-
-
-
-
-            
-
-        }
-
-        function afterBookingTextUpdate(ticketClass){
-            const ticketCountNumber =document.getElementById(ticketClass + '-ticket-count').value;
-          
-            document.getElementById(ticketClass +'-ticket-count-after').innerText= ticketCountNumber;
-
-        }
-        function afterBookingCalculationUpdate(billType){
-            const bill =document.getElementById(billType).innerText;
-            
-            document.getElementById(billType +'-after').innerText= bill;
-
-        }
-
-
-
-       
-           
-
-
-    
-
-    
-
-
+        document.getElementById(
+          ticketClass + "-ticket-count-after"
+        ).innerText = ticketCountNumber;
+      }
+      // this function for value type data and i cant use this to text update function thats why new function
+      function afterBookingCalculationUpdate(billType) {
+        const bill = document.getElementById(billType).innerText;
+        document.getElementById(billType + "-after").innerText = bill;
+      }
     </script>
-</body>
-
+  </body>
 </html>
